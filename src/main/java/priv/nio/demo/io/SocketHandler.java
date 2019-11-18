@@ -1,4 +1,4 @@
-package priv.nio.demo.io.classic;
+package priv.nio.demo.io;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +29,7 @@ public class SocketHandler implements Runnable {
      * @param socket 客户端连接对应的socket
      * @return 新的SocketHandler对象
      */
-    static SocketHandler newInstance(Socket socket) {
+    public static SocketHandler newInstance(Socket socket) {
         return new SocketHandler(socket);
     }
 

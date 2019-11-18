@@ -1,28 +1,29 @@
-package priv.nio.demo.io.classic;
+package priv.nio.demo.io;
 
 import priv.nio.demo.BaseInfo;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author lyqlbst
  * @description 服务端
  * @email 1098387108@qq.com
- * @date 2019/11/18 4:15 PM
+ * @date 2019/11/18 6:50 PM
  */
-public class Server {
-    public static void main(String[] args) throws IOException {
-        start();
-    }
-
+public abstract class Server {
     /**
      * 启动服务端
      *
      * @throws IOException IO异常
      */
-    private static void start() throws IOException {
+    protected void start() throws IOException {
         try (ServerSocket serverSocket = new ServerSocket(BaseInfo.DEFAULT_PORT)) {
             System.out.println("server端socket已建立，等待客户端连接...");
             while (true) {
@@ -37,13 +38,10 @@ public class Server {
     }
 
     /**
-     * 创建一个新的线程处理socket
+     * 处理socket
      *
      * @param socket 客户端对应的连接
      */
-    private static void handle(Socket socket) {
-        SocketHandler socketHandler = SocketHandler.newInstance(socket);
-        Thread handlerThread = new Thread(socketHandler);
-        handlerThread.start();
+    protected void handle(Socket socket) {
     }
 }

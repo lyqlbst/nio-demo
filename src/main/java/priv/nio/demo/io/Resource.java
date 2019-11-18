@@ -1,4 +1,4 @@
-package priv.nio.demo.io.classic;
+package priv.nio.demo.io;
 
 import lombok.AccessLevel;
 import lombok.Data;

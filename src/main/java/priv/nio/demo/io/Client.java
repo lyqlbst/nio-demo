@@ -1,4 +1,4 @@
-package priv.nio.demo.io.classic;
+package priv.nio.demo.io;
 
 import priv.nio.demo.BaseInfo;
 
@@ -7,7 +7,6 @@ import java.net.Socket;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author lyqlbst
