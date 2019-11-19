@@ -29,4 +29,12 @@ public final class BaseInfo {
      * 退出标志符
      */
     public static final String DEFAULT_QUIT_SYMBOL = "quit";
+    /**
+     * {@link java.nio.ByteBuffer}默认分配空间
+     */
+    public static final int DEFAULT_CAPACITY = 1024;
+    /**
+     * 默认超时时间
+     */
+    public static final int DEFAULT_TIME_OUT = 1000;
 }

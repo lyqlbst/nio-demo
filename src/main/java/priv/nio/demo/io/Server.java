@@ -1,15 +1,10 @@
 package priv.nio.demo.io;
 
-import priv.nio.demo.BaseInfo;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicLong;
+
+import static priv.nio.demo.BaseInfo.DEFAULT_PORT;
 
 /**
  * @author lyqlbst
@@ -24,7 +19,7 @@ public abstract class Server {
      * @throws IOException IO异常
      */
     protected void start() throws IOException {
-        try (ServerSocket serverSocket = new ServerSocket(BaseInfo.DEFAULT_PORT)) {
+        try (ServerSocket serverSocket = new ServerSocket(DEFAULT_PORT)) {
             System.out.println("server端socket已建立，等待客户端连接...");
             while (true) {
                 Socket socket = serverSocket.accept();

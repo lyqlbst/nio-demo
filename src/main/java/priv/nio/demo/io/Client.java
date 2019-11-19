@@ -1,12 +1,14 @@
 package priv.nio.demo.io;
 
-import priv.nio.demo.BaseInfo;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.net.Socket;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+
+import static priv.nio.demo.BaseInfo.*;
 
 /**
  * @author lyqlbst
@@ -25,7 +27,7 @@ public class Client {
      * @throws IOException IO异常
      */
     private static void connect() throws IOException {
-        try (Socket socket = new Socket(BaseInfo.DEFAULT_HOST, BaseInfo.DEFAULT_PORT)) {
+        try (Socket socket = new Socket(DEFAULT_HOST, DEFAULT_PORT)) {
             System.out.println("socket已建立，准备发送消息...");
             sendAndReceiveMsg(socket);
         } catch (IOException e) {
@@ -48,7 +50,7 @@ public class Client {
             try (Scanner s = new Scanner(System.in)) {
                 BufferedReader reader = resource.getReader();
                 BufferedWriter writer = resource.getWriter();
-                final String quit = BaseInfo.DEFAULT_QUIT_SYMBOL;
+                final String quit = DEFAULT_QUIT_SYMBOL;
                 String body;
 
                 // 控制台输入
@@ -87,7 +89,7 @@ public class Client {
      */
     private static String currentTime() {
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(BaseInfo.DEFAULT_TIME_PATTERN);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DEFAULT_TIME_PATTERN);
         return dtf.format(now);
     }
 }

@@ -2,12 +2,14 @@ package priv.nio.demo.io;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import priv.nio.demo.BaseInfo;
+import priv.nio.demo.CommonUtil;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.net.Socket;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import static priv.nio.demo.BaseInfo.DEFAULT_QUIT_SYMBOL;
 
 /**
  * @author lyqlbst
@@ -46,14 +48,13 @@ public class SocketHandler implements Runnable {
         try {
             resource.open();
 
-            final String quit = BaseInfo.DEFAULT_QUIT_SYMBOL;
             BufferedReader reader = resource.getReader();
             BufferedWriter writer = resource.getWriter();
             String body;
 
-            while ((body = reader.readLine()) != null && !quit.equals(body)) {
+            while ((body = reader.readLine()) != null && !DEFAULT_QUIT_SYMBOL.equals(body)) {
                 System.out.println("server端接收到消息：" + body);
-                String ackMsg = "server received(" + currentTime() + ")\n";
+                String ackMsg = CommonUtil.getAckMsg() + "\n";
                 writer.write(ackMsg);
                 writer.flush();
             }
@@ -70,16 +71,5 @@ public class SocketHandler implements Runnable {
                 System.out.println("关闭资源错误...");
             }
         }
-    }
-
-    /**
-     * 获取当前时间
-     *
-     * @return 当前时间
-     */
-    private String currentTime() {
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(BaseInfo.DEFAULT_TIME_PATTERN);
-        return dtf.format(now);
     }
 }
